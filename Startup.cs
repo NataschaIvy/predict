@@ -24,8 +24,7 @@ namespace camapi
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
-            _config = configuration;
-            //_logger = logger;
+            _config = configuration;         
         }
 
         /// <summary>
