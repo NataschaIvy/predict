@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camapi
+  namespace: camapi
+  labels:
+    app: camapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camapi
+  template:
+    metadata:
+      labels:
+        app: camapi
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: camapi
+        image: registry.ivy.cx/camapi.predict:v19
+        volumeMounts:          
+          - name: appsettings
+            mountPath: /App/appsettings.Production.json
+            subPath: appsettings.Production.json        
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"            
+      volumes:        
+        - name: appsettings
+          secret:
+            secretName: predict-config
