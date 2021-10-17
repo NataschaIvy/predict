@@ -16,9 +16,7 @@ namespace camapi
         /// private configuration object
         /// </summary>
         /// <value></value>
-        private IConfiguration _config;
-
-        private readonly ILogger<Startup> _logger;
+        private IConfiguration _config;        
 
         /// <summary>
         /// constructor
